@@ -16,15 +16,15 @@ after_success:
     - docker push  svvone/docker-client2
     - docker push  svvone/docker-server2
     - docker push  svvone/docker-worker2
-    deploy:
-        edge: true
-        provider: elasticbeanstalk
-        region: us-east-1
-        app: multi-docker  
-        env: MultiDocker-env
-        bucket_name: elasticbeanstalk-us-east-1-343766802350
-        bucket_path: docker-multi
-        on:
-            branch: master
-        access_key_id: $AWS_ACCESS_KEY
-        secret_access_key: $AWS_SECRET_KEY
+deploy:
+    edge: true
+    provider: elasticbeanstalk
+    region: us-east-1
+    app: multi-docker  
+    env: MultiDocker-env
+    bucket_name: elasticbeanstalk-us-east-1-343766802350
+    bucket_path: docker-multi
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
