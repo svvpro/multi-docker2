@@ -3,14 +3,14 @@ sudo: required
 service:
     - docker
 before_install:
-    - docker build -t svvone/docker-test -f ./client/Dockerfile.dev
+    - docker build -t svvone/docker-test -f ./client/Dockerfile.dev ./client
 script:
     - docker run -e CI=true svvone/docker-test npm run test
 after_success:
-    - docker build -f svvone/docker-nginx2 ./nginx
-    - docker build -f svvone/docker-client2 ./client
-    - docker build -f svvone/docker-server2 ./server
-    - docker build -f svvone/docker-worker2 ./worker
+    - docker build -t svvone/docker-nginx2 ./nginx
+    - docker build -t svvone/docker-client2 ./client
+    - docker build -t svvone/docker-server2 ./server
+    - docker build -t svvone/docker-worker2 ./worker
     - echo "$DOCKER_PASSWORD" | docker  login -u "$DOCKER_USERNAME" --password-stdin
     - docker push  svvone/docker-nginx2
     - docker push  svvone/docker-client2
